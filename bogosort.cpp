@@ -64,7 +64,7 @@ void bar (int value) {
     
     int barWidth = w.ws_col - 10;
 
-       float progress = 0.0;
+    float progress = 0.0;
        
     //while (progress < 1.0) {
     while (progress < value/100.0) {
