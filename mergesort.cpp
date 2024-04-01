@@ -146,7 +146,7 @@ int main()
     arr_size = sizeof(arr) / sizeof(arr[0]);
 
     printf("Given array is \n");
-    //printArray(arr, arr_size);
+    printArray(arr, arr_size);
     printArrayBar(arr, arr_size);
     printf("\n");
 
