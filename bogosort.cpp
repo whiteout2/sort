@@ -57,31 +57,31 @@ void shuffle(int* a, int size) {
 
 void bar (int value) {
     // Print progress bar
-	//system("clear");
-	
-	struct winsize w;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    //system("clear");
     
-	int barWidth = w.ws_col - 10;
+    struct winsize w;
+    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    
+    int barWidth = w.ws_col - 10;
 
-   	float progress = 0.0;
-   	
-	//while (progress < 1.0) {
+       float progress = 0.0;
+       
+    //while (progress < 1.0) {
     while (progress < value/100.0) {
-	    //printf("\r%3d%% ", (int)(progress * 100.0));
+        //printf("\r%3d%% ", (int)(progress * 100.0));
         printf("\r%3d ", value);
-	    int pos = barWidth * progress;
-	    for (int i = 0; i < barWidth; i++) {
-	        if (i <= pos) printf("\u2588");
-	        else printf(" ");
-	    }
-	    fflush(stdout);
-	
-	    progress += 0.02; // test
-	    
-	    //usleep(100000);
-	}
-	//printf("\r100%%\n");
+        int pos = barWidth * progress;
+        for (int i = 0; i < barWidth; i++) {
+            if (i <= pos) printf("\u2588");
+            else printf(" ");
+        }
+        fflush(stdout);
+    
+        progress += 0.02; // test
+        
+        //usleep(100000);
+    }
+    //printf("\r100%%\n");
     //printf("\r%i", value);
 
 }
