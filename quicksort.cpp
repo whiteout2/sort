@@ -49,12 +49,12 @@ int partition(int arr[], int low, int high)
             i++;
             swap(&arr[i], &arr[j]);
             //printArray(arr, arr_size);
-            //printArrayBar(arr, arr_size);
+            printArrayBar(arr, arr_size);
         }
     }
     swap(&arr[i + 1], &arr[high]);
     //printArray(arr, arr_size);
-    //printArrayBar(arr, arr_size);
+    printArrayBar(arr, arr_size);
     
     return (i + 1);
 }
@@ -66,7 +66,6 @@ void quickSort(int arr[], int low, int high)
     if (low < high) {
         // pi is the partition return index of pivot
         int pi = partition(arr, low, high);
-        printArrayBar(arr, arr_size);
 
         // Recursion Call
         // smaller element than pivot goes left and
