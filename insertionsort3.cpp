@@ -3,11 +3,24 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <utility>
+#include <chrono>
+#include <iostream>
 
 void printArray(int arr[], int size);
 void printArrayBar(int A[], int size);
 // print bar
 void bar(int value);
+
+
+struct perf {
+    std::chrono::steady_clock::time_point start_;
+    perf() : start_(std::chrono::steady_clock::now()) {}
+    double elapsed() const {
+        auto stop = std::chrono::steady_clock::now();
+        std::chrono::duration<double> elapsed_seconds = stop - start_;
+        return elapsed_seconds.count();
+    }
+};
 
 
 /* 
@@ -102,6 +115,8 @@ int main()
     int arr[] = { 43, 27, 100, 10, 67, 1, 90, 45, 87, 78, 74, 65, 13, 5, 77, 33 };
     int size = sizeof(arr) / sizeof(arr[0]);
     //insertionSort(arr, size);
+    perf p3;
     isort1(arr, size);
+    std::cout << "Elapsed time: " << p3.elapsed() << "s" << std::endl;
     printArray(arr, size);
 }

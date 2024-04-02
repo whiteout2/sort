@@ -3,12 +3,26 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+#include <chrono>
+#include <iostream>
 
 int arr_size = 0;
 void printArray(int A[], int size);
 void printArrayBar(int A[], int size);
 // print bar
 void bar(int value);
+
+
+struct perf {
+    std::chrono::steady_clock::time_point start_;
+    perf() : start_(std::chrono::steady_clock::now()) {}
+    double elapsed() const {
+        auto stop = std::chrono::steady_clock::now();
+        std::chrono::duration<double> elapsed_seconds = stop - start_;
+        return elapsed_seconds.count();
+    }
+};
+
 
 // Merges two subarrays of arr[].
 // First subarray is arr[l..m]
@@ -150,7 +164,9 @@ int main()
     printArrayBar(arr, arr_size);
     printf("\n");
 
+    perf p3;
     mergeSort(arr, 0, arr_size - 1);
+    std::cout << "Elapsed time: " << p3.elapsed() << "s" << std::endl;
 
     printf("\nSorted array is \n");
     printArray(arr, arr_size);
