@@ -41,6 +41,43 @@ void isort1(int x[], int n)
         }
 }
 
+
+void selectionsort(int a[], int size)
+{ 
+    /* a[0] to a[aLength-1] is the array to sort */
+    int i,j;
+    int aLength = size; // initialise to a's length
+
+    /* advance the position through the entire array */
+    /*   (could do i < aLength-1 because single element is also min element) */
+    for (i = 0; i < aLength-1; i++)
+    {
+        /* find the min element in the unsorted a[i .. aLength-1] */
+
+        /* assume the min is the first element */
+        int jMin = i;
+        /* test against elements after i to find the smallest */
+        for (j = i+1; j < aLength; j++)
+        {
+            /* if this element is less, then it is the new minimum */
+            if (a[j] < a[jMin])
+            {
+                /* found new minimum; remember its index */
+                jMin = j;
+            }
+        }
+
+        if (jMin != i) 
+        {
+            std::swap(a[i], a[jMin]);
+            printArrayBar(a, aLength);
+        }
+    }
+}
+
+
+
+
 void printArray(int arr[], int size)
 {
     int i;
@@ -95,7 +132,12 @@ int main()
     int arr[] = { 43, 27, 100, 10, 67, 1, 90, 45, 87, 78, 74, 65, 13, 5, 77, 33 };
     int size = sizeof(arr) / sizeof(arr[0]);
     perf p3;
-    isort1(arr, size);
+    //isort1(arr, size);
+    // NOTE: selection sort does less swaps than insertion sort.
+    // Because we only print bars after every swap (and do a short usleep after every
+    // bar print) it looks like insertion sort is fast. But in reality it is not.
+    // TODO: We should check all algos without the bar prints.
+    selectionsort(arr, size);
     std::cout << "Elapsed time: " << p3.elapsed() << "s" << std::endl;
     printArray(arr, size);
 }
