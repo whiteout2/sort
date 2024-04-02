@@ -1,4 +1,4 @@
-// C program for Merge Sort
+// C program for Quick Sort
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
