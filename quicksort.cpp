@@ -48,13 +48,13 @@ int partition(int arr[], int low, int high)
             // Increment index of smaller element
             i++;
             swap(&arr[i], &arr[j]);
-            //printArray(arr, arr_size);
-            printArrayBar(arr, arr_size);
+            printArray(arr, arr_size);
+            //printArrayBar(arr, arr_size);
         }
     }
     swap(&arr[i + 1], &arr[high]);
-    //printArray(arr, arr_size);
-    printArrayBar(arr, arr_size);
+    printArray(arr, arr_size);
+    //printArrayBar(arr, arr_size);
     
     return (i + 1);
 }
