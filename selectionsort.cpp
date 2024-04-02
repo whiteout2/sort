@@ -24,22 +24,22 @@ struct perf {
 
 
 
-// https://en.wikipedia.org/wiki/Insertion_sort
-// Simple implementation: Jon Bentley shows a three-line C/C++ version that is five lines
-// when optimized.[1]
+// // https://en.wikipedia.org/wiki/Insertion_sort
+// // Simple implementation: Jon Bentley shows a three-line C/C++ version that is five lines
+// // when optimized.[1]
 
-/* Simplest insertion sort */
-void isort1(int x[], int n)
-{       
-    int i, j;
-    for (i = 1; i < n; i++)
-        for (j = i; j > 0 && x[j-1] > x[j]; j--) {
-            //std::swap(j-1, j); // NOTE: there is an error in the Programming Pearls book
-            std::swap(x[j-1], x[j]);
-            //printArray(arr, size);
-            printArrayBar(x, n);
-        }
-}
+// /* Simplest insertion sort */
+// void isort1(int x[], int n)
+// {       
+//     int i, j;
+//     for (i = 1; i < n; i++)
+//         for (j = i; j > 0 && x[j-1] > x[j]; j--) {
+//             //std::swap(j-1, j); // NOTE: there is an error in the Programming Pearls book
+//             std::swap(x[j-1], x[j]);
+//             //printArray(arr, size);
+//             printArrayBar(x, n);
+//         }
+// }
 
 
 void selectionsort(int a[], int size)
