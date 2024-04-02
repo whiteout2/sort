@@ -29,7 +29,7 @@ struct perf {
 void quicksort(int a[], int l, int r) 
 { 
     int i = l-1, j = r; 
-    int v = a[r];
+    int v = a[r]; // last value is pivot
     if (r <= l) return;
     for (;;) {
         while (a[++i] < v) ;
@@ -39,7 +39,7 @@ void quicksort(int a[], int l, int r)
         printArray(a, arr_size);
         //printArrayBar(a, arr_size);
     }
-    std::swap(a[i], a[r]);
+    std::swap(a[i], a[r]); // swap pivot
     printArray(a, arr_size);
     //printArrayBar(a, arr_size);
     quicksort(a, l, i-1);
