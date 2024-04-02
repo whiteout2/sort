@@ -65,7 +65,6 @@ void quickSort(int arr[], int low, int high)
     // when low is less than high
     if (low < high) {
         // pi is the partition return index of pivot
-
         int pi = partition(arr, low, high);
         printArrayBar(arr, arr_size);
 
