@@ -26,6 +26,7 @@ struct perf {
 
 // See: https://www.geeksforgeeks.org/quick-sort/
 // Lomuto partition scheme
+
 // Utility function to swap tp integers
 void swap(int* p1, int* p2)
 {
@@ -107,7 +108,7 @@ void printArrayBar(int A[], int size, int lt, int nc, int pi)
         printf("\n");
         printf("\x1b[37m"); // white
     }
-    usleep(1000000);
+    usleep(200000);
 }
 
 void bar (int value) {
