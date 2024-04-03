@@ -96,7 +96,7 @@ void printArrayBar(int A[], int size, int lt, int nc, int pi)
         // TODO: print colors to indicate: lesser, greater, not compared, pivot
         // See: https://nl.wikipedia.org/wiki/Quicksort
         // TEST: color
-        // TODO: check boundaries, especially for pivot swap
+        // TODO: check boundaries for off-by-one, especially for pivot swap
         if (i <= lt) printf("\x1b[37m");           // white=lesser
         if (i > lt && i < nc) printf("\x1b[32m");  // green=greater
         if (i >= nc && i < pi) printf("\x1b[31m"); // red=nc
