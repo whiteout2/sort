@@ -8,7 +8,7 @@
 
 int arr_size = 0;
 void printArray(int A[], int size);
-void printArrayBar(int A[], int size);
+void printArrayBar(int A[], int size, int lt, int nc, int pi);
 // print bar
 void bar(int value);
 
@@ -24,6 +24,8 @@ struct perf {
 };
 
 
+// See: https://www.geeksforgeeks.org/quick-sort/
+// Lomuto partition scheme
 // Utility function to swap tp integers
 void swap(int* p1, int* p2)
 {
@@ -48,15 +50,18 @@ int partition(int arr[], int low, int high)
             // Increment index of smaller element
             i++;
             swap(&arr[i], &arr[j]);
-            printArray(arr, arr_size);
-            //printArrayBar(arr, arr_size);
+            //printArray(arr, arr_size);
+            printArrayBar(arr, arr_size, i, j, high);
         }
     }
-    swap(&arr[i + 1], &arr[high]);
-    printArray(arr, arr_size);
-    //printArrayBar(arr, arr_size);
+    i++;
+    //swap(&arr[i + 1], &arr[high]);
+    swap(&arr[i], &arr[high]); // swap pivot
+    //printArray(arr, arr_size);
+    printArrayBar(arr, arr_size, i-1, i+1, i);
     
-    return (i + 1);
+    //return (i + 1);
+    return (i);
 }
 
 // The Quicksort function Implement
@@ -84,14 +89,24 @@ void printArray(int A[], int size)
     printf("\n");
 }
 
-void printArrayBar(int A[], int size)
+void printArrayBar(int A[], int size, int lt, int nc, int pi)
 {
     system("clear");
     for (int i = 0; i < size; i++) {
+        // TODO: print colors to indicate: lesser, greater, not compared, pivot
+        // See: https://nl.wikipedia.org/wiki/Quicksort
+        // TEST: color
+        // TODO: check boundaries, especially for pivot swap
+        if (i <= lt) printf("\x1b[37m");           // white=lesser
+        if (i > lt && i < nc) printf("\x1b[32m");  // green=greater
+        if (i >= nc && i < pi) printf("\x1b[31m"); // red=nc
+        if (i == pi) printf("\x1b[30m");           // black=pivot
+
         bar(A[i]);
         printf("\n");
+        printf("\x1b[37m"); // white
     }
-    usleep(200000);
+    usleep(1000000);
 }
 
 void bar (int value) {
@@ -135,7 +150,7 @@ int main()
 
     printf("Given array is \n");
     printArray(arr, arr_size);
-    printArrayBar(arr, arr_size);
+    //printArrayBar(arr, arr_size);
     printf("\n");
 
     perf p3;

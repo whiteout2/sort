@@ -26,6 +26,7 @@ struct perf {
 
 // See: https://web.archive.org/web/20120219000149/http://www.sorting-algorithms.com/static/QuicksortIsOptimal.pdf
 // Quicksort with 2-way partitioning
+// Hoare partition scheme but uses last value as pivot
 void quicksort(int a[], int l, int r) 
 { 
     int i = l-1, j = r; 
@@ -107,7 +108,7 @@ int main()
 
     printf("Given array is \n");
     printArray(arr, arr_size);
-    printArrayBar(arr, arr_size);
+    //printArrayBar(arr, arr_size);
     printf("\n");
 
     perf p3;
