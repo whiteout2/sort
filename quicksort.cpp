@@ -45,13 +45,14 @@ int partition(int arr[], int low, int high)
     int i = (low - 1);
 
     for (int j = low; j <= high; j++) {
+        printArrayBar(arr, arr_size, i, j, high);
         // If current element is smaller than the pivot
         if (arr[j] < pivot) {
             // Increment index of smaller element
             i++;
             swap(&arr[i], &arr[j]);
             //printArray(arr, arr_size);
-            printArrayBar(arr, arr_size, i, j, high);
+            //printArrayBar(arr, arr_size, i, j, high);
         }
     }
     i++;
