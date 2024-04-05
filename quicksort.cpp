@@ -12,6 +12,8 @@ void printArrayBar(int A[], int size, int lt, int nc, int pi);
 // print bar
 void bar(int value);
 
+int usecs, tfnd;
+
 
 struct perf {
     std::chrono::steady_clock::time_point start_;
@@ -108,7 +110,8 @@ void printArrayBar(int A[], int size, int lt, int nc, int pi)
         printf("\n");
         printf("\x1b[37m"); // white
     }
-    usleep(200000);
+    //usleep(200000);
+    usleep(usecs);
 }
 
 void bar (int value) {
@@ -145,8 +148,53 @@ void bar (int value) {
 
 
 // Driver code
-int main()
+int main(int argc, char *argv[])
 {
+    int flags, opt;
+    //int nsecs, tfnd;
+
+    usecs = 200000;
+    tfnd = 0;
+    flags = 0;
+
+    while ((opt = getopt(argc, argv, "nt:")) != -1)
+    {
+        switch (opt)
+        {
+        case 'n':
+            flags = 1;
+            break;
+        case 't':
+            if (!isdigit(optarg[0]))
+            {
+                printf("Entered input is not a number\n");
+                exit(EXIT_FAILURE);
+            }
+            usecs = atoi(optarg);
+            tfnd = 1;
+            break;
+        default: /* '?' */
+            //fprintf(stderr, "Usage: %s [-t usecs] [-n] name\n",
+            fprintf(stderr, "Usage: %s [-t usecs]\n",
+                    argv[0]);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    printf("flags=%d; tfnd=%d; usecs=%d; optind=%d\n",
+           flags, tfnd, usecs, optind);
+
+    if (optind >= argc)
+    {
+        fprintf(stderr, "Expected argument after options\n");
+        //exit(EXIT_FAILURE);
+    }
+
+    printf("name argument = %s\n", argv[optind]);
+
+    //exit(EXIT_SUCCESS);
+
+
     int arr[] = { 43, 27, 100, 10, 67, 1, 90, 45, 87, 78, 74, 65, 13, 5, 77, 33 };
     arr_size = sizeof(arr) / sizeof(arr[0]);
 
